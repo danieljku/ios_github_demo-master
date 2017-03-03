@@ -42,8 +42,6 @@ class SearchSettingsViewController: UIViewController {
     }
     
     @IBAction func onSave(_ sender: Any) {
-        //settings.minStars = 100000
-
         self.delegate?.didSaveSettings(settings: settings)
         self.dismiss(animated: true, completion: nil)
     }
