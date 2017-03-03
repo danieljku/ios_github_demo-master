@@ -12,7 +12,7 @@
         <!--Repo Results View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="RepoResultsViewController" customModule="GithubDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="resultsVC" id="vXZ-lx-hvc" customClass="RepoResultsViewController" customModule="GithubDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -138,7 +138,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="x5q-EH-pP8"/>
+                    <navigationItem key="navigationItem" id="x5q-EH-pP8">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="TIm-6F-2mt">
+                            <connections>
+                                <segue destination="NCv-eH-qpi" kind="presentation" id="yn6-hq-tH6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="1Zl-FU-iWu" id="rOj-mX-lwB"/>
                     </connections>
@@ -146,6 +152,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="818.39999999999998" y="-558.17091454272872"/>
+        </scene>
+        <!--Search Settings View Controller-->
+        <scene sceneID="Ho6-6C-ATe">
+            <objects>
+                <viewController id="N64-Rr-C3Z" customClass="SearchSettingsViewController" customModule="GithubDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZDd-3Z-5bp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ri0-Uy-Ax3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u7z-TV-G8A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lnw-38-dtc">
+                                <rect key="frame" x="148" y="114" width="143" height="31"/>
+                                <connections>
+                                    <action selector="onSlider:" destination="N64-Rr-C3Z" eventType="valueChanged" id="twF-dX-SCB"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum Stars:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxA-Bd-G23">
+                                <rect key="frame" x="16" y="114" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JoE-i1-Ydi">
+                                <rect key="frame" x="299" y="114" width="60" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wwn-9b-ro9">
+                                <rect key="frame" x="170" y="293" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="onSave:" destination="N64-Rr-C3Z" eventType="touchUpInside" id="OLg-bK-IO5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OxA-Bd-G23" firstAttribute="top" secondItem="ZDd-3Z-5bp" secondAttribute="bottom" constant="50" id="IdM-DQ-bSo"/>
+                            <constraint firstItem="JoE-i1-Ydi" firstAttribute="leading" secondItem="lnw-38-dtc" secondAttribute="trailing" constant="10" id="LGe-U7-aDY"/>
+                            <constraint firstItem="lnw-38-dtc" firstAttribute="leading" secondItem="OxA-Bd-G23" secondAttribute="trailing" constant="15" id="PcT-A2-EM9"/>
+                            <constraint firstItem="OxA-Bd-G23" firstAttribute="leading" secondItem="u7z-TV-G8A" secondAttribute="leading" constant="16" id="ZCH-AL-YtG"/>
+                            <constraint firstItem="lnw-38-dtc" firstAttribute="top" secondItem="ZDd-3Z-5bp" secondAttribute="bottom" constant="50" id="blK-HE-nM2"/>
+                            <constraint firstItem="JoE-i1-Ydi" firstAttribute="top" secondItem="ZDd-3Z-5bp" secondAttribute="bottom" constant="50" id="l73-4x-f21"/>
+                            <constraint firstAttribute="trailing" secondItem="JoE-i1-Ydi" secondAttribute="trailing" constant="16" id="zWQ-1Q-xJL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rbr-hB-vmE">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="g1Y-Im-C1S">
+                            <connections>
+                                <action selector="onCancel:" destination="N64-Rr-C3Z" id="pCh-xM-qkV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="starCount" destination="JoE-i1-Ydi" id="08r-yM-gWg"/>
+                        <outlet property="starSlider" destination="lnw-38-dtc" id="HGL-u0-TX8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NR0-A6-SqB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2565.5999999999999" y="-560.86956521739137"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FpP-oR-azb">
@@ -164,6 +236,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dru-y2-L7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="-557"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P9i-Rg-0ND">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NCv-eH-qpi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="igo-Nz-eFU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="N64-Rr-C3Z" kind="relationship" relationship="rootViewController" id="0eY-hr-3CE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aoX-Pu-DXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1626.4000000000001" y="-560.86956521739137"/>
         </scene>
     </scenes>
     <resources>

@@ -18,8 +18,6 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var tableView: UITableView!
 
     var repos: [GithubRepo]!
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +30,7 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         // Initialize the UISearchBar
         searchBar = UISearchBar()
         searchBar.delegate = self
-
+        
         // Add SearchBar to the NavigationBar
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
@@ -81,15 +79,22 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
 
             // Print the returned repositories to the output window
             for repo in newRepos {
-                self.repos = newRepos
-                self.tableView.reloadData()
                 print(repo)
-            }   
+            }
+            self.repos = newRepos
+            self.tableView.reloadData()
 
             MBProgressHUD.hide(for: self.view, animated: true)
             }, error: { (error) -> Void in
                 print(error!)
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let settingsVC = navController.topViewController as! SearchSettingsViewController
+        settingsVC.settings = self.searchSettings
+        settingsVC.delegate = self
     }
 }
 
@@ -115,5 +120,15 @@ extension RepoResultsViewController: UISearchBarDelegate {
         searchSettings.searchString = searchBar.text
         searchBar.resignFirstResponder()
         doSearch()
+    }
+}
+
+extension RepoResultsViewController: SettingsPresentingViewControllerDelegate{
+    func didSaveSettings(settings: GithubRepoSearchSettings) {
+        self.searchSettings.minStars = settings.minStars
+        doSearch()
+    }
+    
+    func didCancelSettings() {
     }
 }
